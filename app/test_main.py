@@ -71,7 +71,9 @@ def test_outdated_products(
     """Test outdated_products with mocked today date."""
     with patch("app.main.datetime") as mock_datetime:
         mock_datetime.date.today.return_value = today
-        mock_datetime.date.side_effect = lambda *args, **kwargs: datetime.date(*args, **kwargs)
+        mock_datetime.date.side_effect = (
+            lambda *args, **kwargs: datetime.date(*args, **kwargs)
+        )
 
         result = outdated_products(products)
         assert result == expected
